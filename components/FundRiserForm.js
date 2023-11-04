@@ -55,7 +55,7 @@ const FundRiserForm = () => {
 
   return (
     <>
-        <h1 className="font-sans font-bold text-xl">Start Fundraising for Free</h1>
+        <h1 className="font-sans font-bold text-xl">Start Fundraising For Free</h1>
         <form onSubmit={(e)=>riseFund(e)}>
             <div className="form-control my-1">
                 <label className="text-sm text-gray-700">Title :</label>
@@ -66,11 +66,11 @@ const FundRiserForm = () => {
                 <textarea placeholder="Type here" className="form-control-input border-neutral-400 focus:ring-neutral-200" value={description} onChange={(e)=>setDescription(e.target.value)} required></textarea>
             </div>
             <div className="form-control my-1">
-                <label className="text-sm text-gray-700">Targeted contribution amount :</label>
+                <label className="text-sm text-gray-700">Targeted Contribution Amount :</label>
                 <input type="number" placeholder="Type here" className="form-control-input border-neutral-400 focus:ring-neutral-200" value={targetedContributionAmount} onChange={(e)=>setTargetedContributionAmount(e.target.value)} required/>
             </div>
             <div className="form-control my-1">
-                <label className="text-sm text-gray-700">Minimum contribution amount :</label>
+                <label className="text-sm text-gray-700">Minimum Contribution Amount :</label>
                 <input type="number" placeholder="Type here" className="form-control-input border-neutral-400 focus:ring-neutral-200" value={minimumContributionAmount} onChange={(e)=>setMinimumContributionAmount(e.target.value)} required/>
             </div>
             <div className="form-control date-picker my-1">

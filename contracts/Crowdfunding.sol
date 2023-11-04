@@ -7,7 +7,7 @@ import './Project.sol';
 contract Crowdfunding{
 
 // [X] Anyone can start a funding project .
-// @sambitsargam
+/
 
 event ProjectStarted(
     address projectContractAddress ,
@@ -30,7 +30,7 @@ event ContributionReceived(
 
  Project[] private projects;
 
-  // @sambitsargam Anyone can start a fund rising
+  //  Anyone can start a fund rising
  // @return null
 
  function createProject(
@@ -61,7 +61,7 @@ event ContributionReceived(
 
  }
 
- // @sambitsargam Get projects list
+ //  Get projects list
 // @return array
 
 function returnAllProjects() external view returns(Project[] memory){

@@ -3,12 +3,12 @@ pragma solidity ^0.8.0;
 
 import "hardhat/console.sol";
 
-//@sambitsargam
+
 // [X] Anyone can contribute
 // [X] End project if targeted contribution amount reached
 // [X] Expire project if raised amount not fullfill between deadline & return donated amount to all contributor .
 // [X] Owner need to request contributers for withdraw amount.
-// [X] Owner can withdraw amount if 50% contributors agree
+// [X] Owner can withdraw amount if 33% of contributors agree
 
 contract Project{
 
@@ -85,7 +85,7 @@ contract Project{
     );
 
 
-    // @sambitsargam Create project
+    //  Create project
     // @return null
 
    constructor(
@@ -105,7 +105,7 @@ contract Project{
        raisedAmount = 0;
    }
 
-    // @sambitsargam Anyone can contribute
+    //  Anyone can contribute
     // @return null
 
     function contribute(address _contributor) public validateExpiry(State.Fundraising) payable {
@@ -119,7 +119,7 @@ contract Project{
         checkFundingCompleteOrExpire();
     }
 
-    // @sambitsargam complete or expire funding
+    //  complete or expire funding
     // @return null
 
     function checkFundingCompleteOrExpire() internal {
@@ -131,14 +131,14 @@ contract Project{
         completeAt = block.timestamp;
     }
 
-    // @sambitsargam Get contract current balance
+    //  Get contract current balance
     // @return uint 
 
     function getContractBalance() public view returns(uint256){
         return address(this).balance;
     }
 
-    // @sambitsargam Request refunt if funding expired
+    //  Request refund if funding expired
     // @return boolean
 
     function requestRefund() public validateExpiry(State.Expired) returns(bool) {
@@ -149,7 +149,7 @@ contract Project{
         return true;
     }
 
-    // @sambitsargam Request contributor for withdraw amount
+    //  Request contributor for withdraw amount
     // @return null
    
     function createWithdrawRequest(string memory _description,uint256 _amount,address payable _reciptent) public isCreator() validateExpiry(State.Successful) {
@@ -165,7 +165,7 @@ contract Project{
         emit WithdrawRequestCreated(numOfWithdrawRequests,_description, _amount,0,false,_reciptent );
     }
 
-    // @sambitsargam contributors can vote for withdraw request
+    //  contributors can vote for withdraw request
     // @return null
 
     function voteWithdrawRequest(uint256 _requestId) public {
@@ -177,13 +177,13 @@ contract Project{
         emit WithdrawVote(msg.sender,requestDetails.noOfVotes);
     }
 
-    // @sambitsargam Owner can withdraw requested amount
+    //  Owner can withdraw requested amount
     // @return null
 
     function withdrawRequestedAmount(uint256 _requestId) isCreator() validateExpiry(State.Successful) public{
         WithdrawRequest storage requestDetails = withdrawRequests[_requestId];
         require(requestDetails.isCompleted == false,'Request already completed');
-        require(requestDetails.noOfVotes >= noOfContributers/2,'At least 50% contributor need to vote for this request');
+        require(requestDetails.noOfVotes >= noOfContributers * 0.3,'At least 33% contributor need to vote for this request');
         requestDetails.reciptent.transfer(requestDetails.amount);
         requestDetails.isCompleted = true;
 
@@ -198,7 +198,7 @@ contract Project{
 
     }
 
-    // @sambitsargam Get contract details
+    //  Get contract details
     // @return all the project's details
 
     function getProjectDetails() public view returns(
